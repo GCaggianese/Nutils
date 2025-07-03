@@ -2,5 +2,3 @@
 # import this file by writing ``import Nutilspkg/submodule``. Feel free to rename or
 # remove this file altogether. You may create additional modules alongside
 # this file as required.
-
-proc getWelcomeMessage*(): string = "Hello, World!"
