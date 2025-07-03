@@ -6,9 +6,14 @@ description   = "Nutils is a lightweight collection of Nim utilities designed to
 license       = "MIT"
 srcDir        = "src"
 installExt    = @["nim"]
-bin           = @["Nutils"]
-
+bin           = @["nutils"]
 
 # Dependencies
 
 requires "nim >= 2.2.4"
+requires "https://github.com/disruptek/balls.git"
+
+# Tests
+
+task test, "Balls tests":
+  exec "balls tests"

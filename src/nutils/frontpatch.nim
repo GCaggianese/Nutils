@@ -1,6 +1,6 @@
 import std/strutils
 
-proc editFile(lang: string, file: string)=
+proc addLangFrontmatter(lang: string, file: string)=
   let f = open(file, fmReadWriteExisting)
   defer: f.close()
   var isLang = false
@@ -20,3 +20,4 @@ proc editFile(lang: string, file: string)=
     echo lang&", nice!"
   else:
     echo "Not in "&lang&":l"
+
