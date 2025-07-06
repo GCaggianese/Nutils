@@ -1,7 +1,8 @@
 import nutils/frontpatch
+import helper
 import balls
 
-suite "suite test balls":
+suite "test balls":
 
   setup:
     discard "nice!"
@@ -9,11 +10,20 @@ suite "suite test balls":
   block testTester:
     assert 2 == 2
 
-suite "suite addLangFrontmatter":
+
+suite "addLangFrontmatter":
 
   setup:
-    # TODO
-    discard
+    # TODO: change this to helper funct. 
+
+    discard f_e; f_o; file_obtained 
+
+  block expected_no_lang:
+    
+    # for line in f_o.lines():
+    #   if line.find(lang)>=1:
+    assert f_e.lines() == f_o.lines()
+    # discard
 
   block testLang:
     # TODO
