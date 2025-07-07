@@ -1,6 +1,6 @@
 import std/strutils
 
-proc addLangFrontmatter(lang: string, file: string)=
+proc addLangFrontmatter*(lang: string, file: string)=
   let f = open(file, fmReadWriteExisting)
   defer: f.close()
   var isLang = false
