@@ -11,6 +11,7 @@ bin           = @["nutils"]
 # Dependencies
 
 requires "nim >= 2.2.4"
+requires "checksums"
 requires "https://github.com/disruptek/balls.git"
 
 # Tests
