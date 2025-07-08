@@ -7,3 +7,6 @@ proc openFilesToTest*(name: string): (File, File) =
   let expPath = joinPath(testsDir, "expected_frontpatch", "expected_" & name & ".md")
   let obtPath = joinPath(testsDir, "obtained_frontpatch", "expected_" & name & ".md")
   (open(expPath, fmRead), open(obtPath, fmRead))
+
+proc countLines*(filename: string): int =
+  for _ in lines(filename): inc result
