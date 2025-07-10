@@ -1,8 +1,5 @@
 import std/strutils
 
-# TODO: add counter of "---",
-# after the 2nd one finding lang doens't count
-# shouldn't include it neither.
 proc addLangFrontmatter*(lang: string, file: string)=
   let f = open(file, fmReadWriteExisting)
   var isLang = false
