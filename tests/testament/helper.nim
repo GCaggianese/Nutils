@@ -1,11 +1,13 @@
 import std/strutils, std/os
-import checksums/sha1
+import std/sha1 
 
 proc openFilesToTest*(name: string): (File, File) =
   # Always resolve relative to this helper’s location in `tests` folder
   let testsDir = currentSourcePath().parentDir
   let expPath = joinPath(testsDir, "expected_frontpatch", "expected_" & name & ".md")
-  let obtPath = joinPath(testsDir, "obtained_frontpatch", "expected_" & name & ".md")
+  let obtPath = joinPath(testsDir, "obtained_frontpatch", "obtained_" & name & ".md")
+  echo "Expected path: ", expPath
+  echo "Obtained path: ", obtPath
   (open(expPath, fmRead), open(obtPath, fmRead))
 
 proc countLines*(filename: string): int =

@@ -17,4 +17,9 @@ requires "https://github.com/disruptek/balls.git"
 # Tests
 
 task test, "Balls tests":
-  exec "balls tests"
+  exec "cp ./tests/testament/expected_frontpatch/input_es_lang.md ./tests/testament/obtained_frontpatch/obtained_es.md"
+  exec "cp ./tests/testament/expected_frontpatch/expected_no_lang.md ./tests/testament/obtained_frontpatch/obtained_no_lang.md"
+  # exec "nim c -r tests/test1.nim"
+  # exec "balls tests"
+  exec "testament r tests/testament/test1.nim 2>&1 | ./tparse.py"
+

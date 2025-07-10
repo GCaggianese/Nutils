@@ -1,0 +1,2 @@
+[
+{"name":"tests/testament/test1.nim c","category":"testament","target":"c","action":"run","result":"reSuccess","expected":"","given":"","machine":"debian","commit":"fc080058534","branch":"feature/frontpatch/lang"}]

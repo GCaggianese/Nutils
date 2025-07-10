@@ -1,0 +1,40 @@
+{
+  "cacheVersion": "D20240927T193831",
+  "outputFile": "/home/kang/PARA/Areas/Programming/Nim/Nutils/tests/testament/test1",
+  "outputLastModificationTime": "",
+  "compile": [],
+  "link": [
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@ssystem@sexceptions.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@sprivate@sdigitsutils.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@sassertions.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@ssystem@sdollars.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@ssyncio.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@ssystem.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@spure@salgorithm.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@spure@sstrutils.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@ssrc@snutils@sfrontpatch.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@spure@spathnorm.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@sprivate@sospaths2.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@spure@stimes.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@senvvars.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@scmdline.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@ssha1.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@mhelper.nim.c.o",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@mtest1.nim.c.o"
+  ],
+  "linkcmd": "gcc   -o /home/kang/PARA/Areas/Programming/Nim/Nutils/tests/testament/test1 /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@ssystem@sexceptions.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@sprivate@sdigitsutils.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@sassertions.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@ssystem@sdollars.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@ssyncio.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@ssystem.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@spure@salgorithm.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@spure@sstrutils.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@ssrc@snutils@sfrontpatch.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@spure@spathnorm.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@sprivate@sospaths2.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@spure@stimes.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@senvvars.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@scmdline.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@m..@s..@s..@s..@s..@s..@s..@s.asdf@sinstalls@snim@s2.2.4@slib@sstd@ssha1.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@mhelper.nim.c.o /home/kang/PARA/Areas/Programming/Nim/Nutils/nimcache/tests/testament/test1.nim_4a8a08f09d37b73795649038408b5f33/@mtest1.nim.c.o  -pthread -pthread -lm -lm -lrt   -ldl",
+  "extraCmds": [],
+  "configFiles": [
+    "/home/kang/.asdf/installs/nim/2.2.4/config/nim.cfg",
+    "/home/kang/.asdf/installs/nim/2.2.4/config/config.nims",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/tests/config.nims",
+    "/home/kang/PARA/Areas/Programming/Nim/Nutils/tests/testament/config.nims"
+  ],
+  "stdinInput": false,
+  "projectIsCmd": false,
+  "cmdInput": "",
+  "currentDir": "/home/kang/PARA/Areas/Programming/Nim/Nutils",
+  "cmdline": "",
+  "depfiles": [],
+  "nimexe": ""
+}
