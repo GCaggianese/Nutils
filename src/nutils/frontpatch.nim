@@ -11,7 +11,7 @@ proc addLangFrontmatter*(lang: string, file: string)=
       return
     if contains(line,"---"):
       inc frontmatter
-      echo "Frontmatter: " & $(frontmatter >= 1)
+      echo "Frontmatter: " & $(0 < frontmatter and frontmatter < 3)
     if contains(line, lang) and (0 < frontmatter and frontmatter < 3):
       isLang = true
       echo "Found: "&lang

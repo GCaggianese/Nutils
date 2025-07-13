@@ -3,13 +3,18 @@ import ../../src/nutils/frontpatch
 import helper
 
 setStdIoUnbuffered()
+echo ""
+echo """
+ _  _   | _  _  _
+| )(_)__|(_|| )(_)
+               _/"""
 
-echo "addLangFrontmatter no_lang"
-  # test "equal number of lines, content, and bytes":
+echo ""
+
 block setup:
   let fileTest = "no_lang"
-  let fileOutput = "tests/testament/obtained_frontpatch/obtained_no_lang.md"
-  let fileExpected = "tests/testament/expected_frontpatch/expected_no_lang.md"
+  let fileOutput = "tests/frontpatch/obtained_frontpatch/obtained_no_lang.md"
+  let fileExpected = "tests/frontpatch/expected_frontpatch/expected_no_lang.md"
 
   frontpatch.addLangFrontmatter(fileTest, fileOutput)
 
@@ -17,6 +22,8 @@ block setup:
   let (f_e, f_o) = helper.openFilesToTest(fileTest)
   defer: f_e.close()
   defer: f_o.close()
+
+  echo "----------------------------------"
 
   block Total_Lines: 
     let num_i = helper.countLines(fileExpected)
@@ -35,18 +42,25 @@ block setup:
       echo "ByteMatch: ", $byteToByte
       doAssert byteToByte == true
 
-echo "addLangFrontmatter es"
-  # test "equal number of lines, content, and bytes":
+  echo "----------------------------------"
+
+echo """
+ _ _
+(-_)
+"""
+
 block setup:
   let fileTest = "es"
-  let fileOutput = "tests/testament/obtained_frontpatch/obtained_" & fileTest & ".md"
-  let fileExpected = "tests/testament/expected_frontpatch/expected_" & fileTest & ".md"
+  let fileOutput = "tests/frontpatch/obtained_frontpatch/obtained_" & fileTest & ".md"
+  let fileExpected = "tests/frontpatch/expected_frontpatch/expected_" & fileTest & ".md"
     
   frontpatch.addLangFrontmatter(fileTest, fileOutput)
 
   let (f_e, f_o) = helper.openFilesToTest(fileTest)
   defer: f_e.close()
   defer: f_o.close()
+
+  echo "----------------------------------"
     
   block Total_Lines:    
     var num_i = 0

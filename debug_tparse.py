@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-tparse.py – prettify Nim compiler test output (v8)
+tparse.py – prettify Nim compiler test output (debug version)
 
 Pipe raw Nim compiler output through it:
 nim c -r tests/testament/test1.nim 2>&1 | ./tparse.py
@@ -21,43 +21,39 @@ def col(txt, c):
     code = dict(red=31, green=32, yellow=33, blue=34, cyan=36)[c]
     return f"\x1b[{code}m{txt}\x1b[0m"
 
-def shorten_path(full_path):
-    """Convert full path to relative path with ../ prefix"""
-    # Find the part after 'tests/testament/' and prepend '../'
-    pattern = re.compile(r"tests/testament/(.+)")
-    m = pattern.search(full_path)
-    if m:
-        return "../" + m.group(1)
-    else:
-        # fallback to just basename
-        return full_path.split('/')[-1] if '/' in full_path else full_path
-
 # ───────────────────────── regexes ─────────────────────────
 
-R_PROJ = re.compile(r'.*proj: (.+?); out: .+? \[([A-Za-z]+)\]')
+R_PROJ = re.compile(r'proj: (.+?); out: .+? \[([A-Za-z]+)\]')
 R_WARNING = re.compile(r'.+Warning: (.+)')
 R_ERROR = re.compile(r'.+Error: (.+)')
 R_TOTAL_LINES = re.compile(r'Total of lines: (\d+) ← input \| output → (\d+)')
 R_LINES_EQUAL = re.compile(r'Lines Equal: (true|false)')
 R_BYTE_MATCH = re.compile(r'ByteMatch: (true|false)')
 R_LANG_TEST = re.compile(r'addLangFrontmatter (.+)')
-R_PATH = re.compile(r'(Expected|Obtained) path: (.+)')
 
 def parse_nim_output():
     cases = OrderedDict()
     current_test = None
+    line_count = 0
     
     for raw in sys.stdin:
         line = strip(raw.rstrip('\n'))
+        line_count += 1
+        
+        print(f"DEBUG {line_count}: {line}", file=sys.stderr)
         
         # Skip empty lines
         if not line:
+            print("DEBUG: Skipping empty line", file=sys.stderr)
             continue
             
+        # Don't skip hint lines - let's process them all for now
+        
         # Extract project info and status
         if (m := R_PROJ.match(line)):
             proj_path = m.group(1)
             status_code = m.group(2)
+            print(f"DEBUG: Found proj line - path: {proj_path}, status: {status_code}", file=sys.stderr)
             
             # Extract test name from path
             test_name = proj_path.split('/')[-1] if '/' in proj_path else proj_path
@@ -78,28 +74,35 @@ def parse_nim_output():
                 "lines_equal": None,
                 "byte_match": None
             }
+            print(f"DEBUG: Created test case for {current_test}", file=sys.stderr)
             continue
         
         if not current_test:
+            print("DEBUG: No current test, skipping line", file=sys.stderr)
             continue
             
         info = cases[current_test]
         
         # Capture warnings
         if (m := R_WARNING.match(line)):
-            info["warnings"].append(m.group(1))
+            warning = m.group(1)
+            info["warnings"].append(warning)
+            print(f"DEBUG: Found warning: {warning}", file=sys.stderr)
             continue
             
         # Capture errors
         if (m := R_ERROR.match(line)):
-            info["errors"].append(m.group(1))
+            error = m.group(1)
+            info["errors"].append(error)
             info["status"] = "FAIL"
+            print(f"DEBUG: Found error: {error}", file=sys.stderr)
             continue
             
         # Capture total lines comparisons
         if (m := R_TOTAL_LINES.match(line)):
             expected, got = m.group(1), m.group(2)
             info["total_lines"].append((expected, got))
+            print(f"DEBUG: Found total lines: {expected} -> {got}", file=sys.stderr)
             if expected != got:
                 info["status"] = "FAIL"
                 info["details"].append(f"Total of lines: {expected} ← input | output → {got}")
@@ -107,32 +110,37 @@ def parse_nim_output():
             
         # Capture equality checks
         if (m := R_LINES_EQUAL.match(line)):
-            info["lines_equal"] = m.group(1) == "true"
-            if not info["lines_equal"]:
+            is_equal = m.group(1) == "true"
+            info["lines_equal"] = is_equal
+            print(f"DEBUG: Found lines equal: {is_equal}", file=sys.stderr)
+            if not is_equal:
                 info["status"] = "FAIL"
                 info["details"].append("Lines not equal")
             continue
             
         if (m := R_BYTE_MATCH.match(line)):
-            info["byte_match"] = m.group(1) == "true"
-            if not info["byte_match"]:
+            is_match = m.group(1) == "true"
+            info["byte_match"] = is_match
+            print(f"DEBUG: Found byte match: {is_match}", file=sys.stderr)
+            if not is_match:
                 info["status"] = "FAIL"
                 info["details"].append("Byte match failed")
             continue
             
-        # Collect relevant test output lines and shorten paths
+        # Collect relevant test output lines
         if (line.startswith('addLangFrontmatter') or 
             line.startswith('Frontmatter:') or 
             line.startswith('Found:') or 
-            line.startswith('Not in')):
+            line.startswith('Not in') or 
+            line.startswith('Expected path:') or 
+            line.startswith('Obtained path:')):
             info["stdout"].append(line)
-        elif (m := R_PATH.match(line)):
-            # Shorten the path
-            path_type = m.group(1)
-            full_path = m.group(2)
-            shortened_path = shorten_path(full_path)
-            info["stdout"].append(f"{path_type} path: {shortened_path}")
+            print(f"DEBUG: Added to stdout: {line}", file=sys.stderr)
             
+    print(f"DEBUG: Final cases count: {len(cases)}", file=sys.stderr)
+    for name, case in cases.items():
+        print(f"DEBUG: Test {name}: {case}", file=sys.stderr)
+    
     return cases
 
 def print_results(cases):
@@ -172,47 +180,17 @@ def print_table_results(cases):
         return
         
     print("\nTest Summary Table")
-    
-    # Calculate column widths
-    headers = ["Test", "Status", "Lines Match", "Byte Match", "Warnings", "Errors"]
-    col_widths = {}
-    
-    # Initialize with header widths
-    for header in headers:
-        col_widths[header] = len(header)
-    
-    # Calculate content widths
-    for test_name, info in cases.items():
-        col_widths["Test"] = max(col_widths["Test"], len(test_name))
-        col_widths["Status"] = max(col_widths["Status"], len("PASS" if info["status"] == "PASS" else "FAIL"))
-        col_widths["Lines Match"] = max(col_widths["Lines Match"], len("Yes"))
-        col_widths["Byte Match"] = max(col_widths["Byte Match"], len("Yes"))
-        col_widths["Warnings"] = max(col_widths["Warnings"], len(str(len(info["warnings"]))))
-        col_widths["Errors"] = max(col_widths["Errors"], len(str(len(info["errors"]))))
-    
-    # Create horizontal border
-    border = '+' + '+'.join('-' * (col_widths[h] + 2) for h in headers) + '+'
-    
-    # Create header line
-    header_line = '|' + '|'.join(f' {h.ljust(col_widths[h])} ' for h in headers) + '|'
-    
-    # Print table
-    print(border)
-    print(header_line)
-    print(border)
+    print("| Test | Status | Lines Match | Byte Match | Warnings | Errors |")
+    print("|------|--------|-------------|------------|----------|--------|")
     
     for test_name, info in cases.items():
-        status = "PASS" if info["status"] == "PASS" else "FAIL"
-        lines_match = "Yes" if info["lines_equal"] else "No" if info["lines_equal"] is not None else "N/A"
-        byte_match = "Yes" if info["byte_match"] else "No" if info["byte_match"] is not None else "N/A"
+        status = "✓ PASS" if info["status"] == "PASS" else "✗ FAIL"
+        lines_match = "✓" if info["lines_equal"] else "✗" if info["lines_equal"] is not None else "N/A"
+        byte_match = "✓" if info["byte_match"] else "✗" if info["byte_match"] is not None else "N/A"
         warnings = str(len(info["warnings"]))
         errors = str(len(info["errors"]))
         
-        row = [test_name, status, lines_match, byte_match, warnings, errors]
-        line = '|' + '|'.join(f' {str(cell).ljust(col_widths[headers[i]])} ' for i, cell in enumerate(row)) + '|'
-        print(line)
-    
-    print(border)
+        print(f"| {test_name} | {status} | {lines_match} | {byte_match} | {warnings} | {errors} |")
 
 # ─────────────────────── main ───────────────────────
 
@@ -220,4 +198,3 @@ if __name__ == "__main__":
     cases = parse_nim_output()
     print_results(cases)
     print_table_results(cases)
-

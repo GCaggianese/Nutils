@@ -16,7 +16,9 @@ requires "checksums"
 # Tests
 
 task test, "Testament tests":
-  exec "cp ./tests/testament/expected_frontpatch/input_es_lang.md ./tests/testament/obtained_frontpatch/obtained_es.md"
-  exec "cp ./tests/testament/expected_frontpatch/expected_no_lang.md ./tests/testament/obtained_frontpatch/obtained_no_lang.md"
-  exec "testament r tests/testament/test1.nim 2>&1 | ./tparse.py"
+  exec "cp ./tests/frontpatch/expected_frontpatch/input_es_lang.md ./tests/frontpatch/obtained_frontpatch/obtained_es.md"
+  exec "cp ./tests/frontpatch/expected_frontpatch/expected_no_lang.md ./tests/frontpatch/obtained_frontpatch/obtained_no_lang.md"
+  exec "testament all"
+  # Debug output from tests
+  exec "nim c -r tests/*/t*.nim" 
 

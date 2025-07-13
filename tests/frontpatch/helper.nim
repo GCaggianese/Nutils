@@ -1,5 +1,5 @@
-import std/strutils, std/os
-import std/sha1 
+import std/os
+import checksums/sha1
 
 proc openFilesToTest*(name: string): (File, File) =
   # Always resolve relative to this helper’s location in `tests` folder
