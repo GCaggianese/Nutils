@@ -1,36 +1,11 @@
 import nutils/frontpatch
 import os
-import std/parseopt
+when not declared(addFloat): import std/formatfloat
 
-var varName: string = "defaultValue"
-var isFrontpatch = false
+proc nutils(frontpatch = false, lang = "no_lang", path = "") =
+  echo "frontpatch:", $frontpatch, " lang:", lang, " path:", path
 
-for kind, key, val in getopt():
-  case kind
-  of cmdArgument:
-    discard
-  of cmdShortOption:
-    case key:
-    of "f":
-      varName = val
-      isFrontpatch = true
-  of cmdLongOption :
-    case key:
-    of "frontpatch": 
-      varName = val 
-      isFrontpatch = true
-  of cmdEnd:
-    discard
+when isMainModule:
+  import cligen
+  dispatch(nutils, short={"frontpatch": 'f', "lang": 'l', "path": 'p'})
 
-if isFrontpatch:
-  case varName
-  of "defaultValue":
-    echo "Please enter a valid frontpatch option."
-  of "lang":
-    echo "Please specify the directory to patch:..."
-    # User input to apply frontpatch
-  else:
-    echo "Please enter a valid frontpatch option."
-else:
-  echo "Please enter a valid option."
-  
