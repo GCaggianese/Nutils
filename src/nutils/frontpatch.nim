@@ -8,17 +8,15 @@ proc addLangFrontmatter*(lang: string, file: string)=
   for line in f.lines():
     if contains(line,"lang: "&lang):
       alreadyLang = true
+      echo "No changes made: 'lang: "&lang&"' already there."
       return
     if contains(line,"---"):
       inc frontmatter
-      echo "Frontmatter: " & $(0 < frontmatter and frontmatter < 3)
     if contains(line, lang) and (0 < frontmatter and frontmatter < 3):
       isLang = true
-      echo "Found: "&lang
   if (isLang and frontmatter >= 1 ):
     f.setFilePos(4)
     for line in f.lines():
-      echo line
       if contains(line,"---"):
         f.setFilePos(f.getFilePos()-4)
         var savePos = f.getFilePos()
@@ -29,7 +27,8 @@ proc addLangFrontmatter*(lang: string, file: string)=
         f.writeLine("lang: "&lang)
         f.writeLine(lineAux)
         break
-    echo lang&", nice!"
+    echo "Tag '"&lang&"' found, patching..."
+    echo "Frontmatter patched!"    
   else:
-    echo "Not in "&lang
+    echo "No changes made: tag '"&lang&"' not found."
   defer: f.close()

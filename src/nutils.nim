@@ -1,9 +1,15 @@
 import nutils/frontpatch
-import os
 when not declared(addFloat): import std/formatfloat
 
 proc nutils(frontpatch = false, lang = "no_lang", path = "") =
-  echo "frontpatch:", $frontpatch, " lang:", lang, " path:", path
+  echo """
+  
+╔═ ║ ║═╔╝╝║  ╔═╝
+║ ║║ ║ ║ ║║  ══║
+╝ ╝══╝ ╝ ╝══╝══╝
+"""
+  if frontpatch:
+    addLangFrontmatter(lang, path)
 
 when isMainModule:
   import cligen
