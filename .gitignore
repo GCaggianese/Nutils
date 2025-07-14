@@ -1,2 +1,6 @@
 nimcache/
 .ignore
+# nutils
+# megatest
+# tAddLangFrontmatter
+# helper
