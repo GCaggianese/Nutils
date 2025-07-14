@@ -1,8 +1,10 @@
 import nutils/frontpatch
 import os
 
-for arg in commandLineParams():
-  echo arg
+var cmdIn = commandLineParams()
+if cmdIn.len() <= 1:
+  for arg in cmdIn:
+    echo arg
 
-
-echo ""
+else:
+  echo "Too many arguments."
